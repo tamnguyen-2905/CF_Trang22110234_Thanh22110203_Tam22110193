@@ -1,0 +1,200 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"f8b83b5d-7bd7-4a09-ac32-61ace81cd6c5\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mytrang4964-glitch&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/tamnguyen-2905/CF_Trang22110234_Thanh22110203_Tam22110193.git&quot;,\r\n    &quot;accountId&quot;: &quot;789d2995-4db0-49a2-ba0f-09eed625b039&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"34rAr6cvZ0FMrMErd9AneVAP7qt\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;Python.code (2).executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.code.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.nhap.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;data&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\" selected=\"Python.nhap\">\r\n    <configuration name=\"code\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"CF_Trang22110234_Thanh22110203_Tam22110193\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/code.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"nhap\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"CF_Trang22110234_Thanh22110203_Tam22110193\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/nhap.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.nhap\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f8b83b5d-7bd7-4a09-ac32-61ace81cd6c5\" name=\"Changes\" comment=\"\" />\r\n      <created>1761961516614</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1761961516614</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"Branch\">\r\n          <value>\r\n            <list>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"origin/data\" />\r\n                </option>\r\n              </RecentGroup>\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/data\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0e891f3aa2b822603855bc31a6070985f4e5ec30)
++++ b/.idea/workspace.xml	(date 1761968473403)
+@@ -4,7 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="f8b83b5d-7bd7-4a09-ac32-61ace81cd6c5" name="Changes" comment="" />
++    <list default="true" id="f8b83b5d-7bd7-4a09-ac32-61ace81cd6c5" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/DataDownload.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DataDownload.ipynb" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -37,6 +40,9 @@
+     &quot;accountId&quot;: &quot;789d2995-4db0-49a2-ba0f-09eed625b039&quot;
+   }
+ }</component>
++  <component name="ProblemsViewState">
++    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
++  </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 1
+ }</component>
+@@ -50,14 +56,17 @@
+     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+     &quot;Python.code (2).executor&quot;: &quot;Run&quot;,
+     &quot;Python.code.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.nhap.executor&quot;: &quot;Run&quot;,
++    &quot;Python.nhap.executor&quot;: &quot;Debug&quot;,
++    &quot;Python.tokenize.executor&quot;: &quot;Run&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;data&quot;
++    &quot;git-widget-placeholder&quot;: &quot;#3 on data&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.python.group.settings&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+ }</component>
+-  <component name="RunManager" selected="Python.nhap">
++  <component name="RunManager">
+     <configuration name="code" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+       <module name="CF_Trang22110234_Thanh22110203_Tam22110193" />
+       <option name="ENV_FILES" value="" />
+@@ -71,6 +80,7 @@
+       <option name="IS_MODULE_SDK" value="true" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+       <option name="ADD_SOURCE_ROOTS" value="true" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code.py" />
+       <option name="PARAMETERS" value="" />
+       <option name="SHOW_COMMAND_LINE" value="false" />
+@@ -80,33 +90,6 @@
+       <option name="INPUT_FILE" value="" />
+       <method v="2" />
+     </configuration>
+-    <configuration name="nhap" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+-      <module name="CF_Trang22110234_Thanh22110203_Tam22110193" />
+-      <option name="ENV_FILES" value="" />
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+-      <option name="IS_MODULE_SDK" value="true" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/nhap.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <recent_temporary>
+-      <list>
+-        <item itemvalue="Python.nhap" />
+-      </list>
+-    </recent_temporary>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+@@ -122,9 +105,13 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1761961516614</updated>
++      <workItem from="1761968305135" duration="128000" />
+     </task>
+     <servers />
+   </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="RECENT_FILTERS">
+       <map>
+@@ -163,4 +150,8 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="add from Trang" />
++    <option name="LAST_COMMIT_MESSAGE" value="add from Trang" />
++  </component>
+ </project>
+\ No newline at end of file
+Index: DataDownload.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n \"cells\": [\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:44:25.071631Z\",\r\n     \"start_time\": \"2025-11-01T02:44:25.064287Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"import yfinance as yf\\n\",\r\n    \"import pandas as pd\"\r\n   ],\r\n   \"id\": \"4d83cf1f2fdb4ab9\",\r\n   \"outputs\": [],\r\n   \"execution_count\": 7\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:44:25.108468Z\",\r\n     \"start_time\": \"2025-11-01T02:44:25.100345Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"def download_stock_data(ticker_symbol: str, period: str = \\\"max\\\"):\\n\",\r\n    \"    \\\"\\\"\\\"\\n\",\r\n    \"    Tải dữ liệu cổ phiếu từ Yahoo Finance bao gồm:\\n\",\r\n    \"    Open, High, Low, Close, Adj Close, Volume.\\n\",\r\n    \"    \\\"\\\"\\\"\\n\",\r\n    \"\\n\",\r\n    \"    try:\\n\",\r\n    \"        # Tải dữ liệu theo từng ngày (interval='1d')\\n\",\r\n    \"        data = yf.download(ticker_symbol, period=period, interval=\\\"1d\\\", auto_adjust=False)\\n\",\r\n    \"\\n\",\r\n    \"        if data.empty:\\n\",\r\n    \"            print(f\\\"Không tìm thấy dữ liệu cho mã {ticker_symbol}.\\\")\\n\",\r\n    \"            return None\\n\",\r\n    \"\\n\",\r\n    \"        # Nếu cột có MultiIndex (Price, Ticker) → gỡ bỏ cấp đầu\\n\",\r\n    \"        if isinstance(data.columns, pd.MultiIndex):\\n\",\r\n    \"            data.columns = data.columns.get_level_values(0)\\n\",\r\n    \"\\n\",\r\n    \"        # Giữ lại các cột cần thiết\\n\",\r\n    \"        data = data[['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']]\\n\",\r\n    \"\\n\",\r\n    \"        # Đưa index 'Date' ra thành cột\\n\",\r\n    \"        data.reset_index(inplace=True)\\n\",\r\n    \"\\n\",\r\n    \"        return data\\n\",\r\n    \"\\n\",\r\n    \"    except Exception as e:\\n\",\r\n    \"        print(f\\\"Lỗi khi tải dữ liệu {ticker_symbol}: {e}\\\")\\n\",\r\n    \"        return None\"\r\n   ],\r\n   \"id\": \"559b4baaa7fe4726\",\r\n   \"outputs\": [],\r\n   \"execution_count\": 8\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:44:29.021024Z\",\r\n     \"start_time\": \"2025-11-01T02:44:25.122166Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"if __name__ == \\\"__main__\\\":\\n\",\r\n    \"    # Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\\n\",\r\n    \"    tickers_input = input(\\\"Nhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \\\").strip()\\n\",\r\n    \"    tickers = [t.strip().upper() for t in tickers_input.split(\\\",\\\") if t.strip() != \\\"\\\"]\\n\",\r\n    \"\\n\",\r\n    \"    # Tải và lưu từng mã với dữ liệu từng ngày (daily)\\n\",\r\n    \"    for ticker in tickers:\\n\",\r\n    \"        data = download_stock_data(ticker, period=\\\"max\\\")\"\r\n   ],\r\n   \"id\": \"3b0316c0fbfc44df\",\r\n   \"outputs\": [\r\n    {\r\n     \"ename\": \"KeyboardInterrupt\",\r\n     \"evalue\": \"Interrupted by user\",\r\n     \"output_type\": \"error\",\r\n     \"traceback\": [\r\n      \"\\u001B[31m---------------------------------------------------------------------------\\u001B[39m\",\r\n      \"\\u001B[31mKeyboardInterrupt\\u001B[39m                         Traceback (most recent call last)\",\r\n      \"\\u001B[36mCell\\u001B[39m\\u001B[36m \\u001B[39m\\u001B[32mIn[9]\\u001B[39m\\u001B[32m, line 3\\u001B[39m\\n\\u001B[32m      1\\u001B[39m \\u001B[38;5;28;01mif\\u001B[39;00m \\u001B[34m__name__\\u001B[39m == \\u001B[33m\\\"\\u001B[39m\\u001B[33m__main__\\u001B[39m\\u001B[33m\\\"\\u001B[39m:\\n\\u001B[32m      2\\u001B[39m     \\u001B[38;5;66;03m# Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\\u001B[39;00m\\n\\u001B[32m----> \\u001B[39m\\u001B[32m3\\u001B[39m     tickers_input = \\u001B[38;5;28;43minput\\u001B[39;49m\\u001B[43m(\\u001B[49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[33;43mNhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \\u001B[39;49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[43m)\\u001B[49m.strip()\\n\\u001B[32m      4\\u001B[39m     tickers = [t.strip().upper() \\u001B[38;5;28;01mfor\\u001B[39;00m t \\u001B[38;5;129;01min\\u001B[39;00m tickers_input.split(\\u001B[33m\\\"\\u001B[39m\\u001B[33m,\\u001B[39m\\u001B[33m\\\"\\u001B[39m) \\u001B[38;5;28;01mif\\u001B[39;00m t.strip() != \\u001B[33m\\\"\\u001B[39m\\u001B[33m\\\"\\u001B[39m]\\n\\u001B[32m      6\\u001B[39m     \\u001B[38;5;66;03m# Tải và lưu từng mã với dữ liệu từng ngày (daily)\\u001B[39;00m\\n\",\r\n      \"\\u001B[36mFile \\u001B[39m\\u001B[32m~\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\Lib\\\\site-packages\\\\ipykernel\\\\kernelbase.py:1396\\u001B[39m, in \\u001B[36mKernel.raw_input\\u001B[39m\\u001B[34m(self, prompt)\\u001B[39m\\n\\u001B[32m   1394\\u001B[39m     msg = \\u001B[33m\\\"\\u001B[39m\\u001B[33mraw_input was called, but this frontend does not support input requests.\\u001B[39m\\u001B[33m\\\"\\u001B[39m\\n\\u001B[32m   1395\\u001B[39m     \\u001B[38;5;28;01mraise\\u001B[39;00m StdinNotImplementedError(msg)\\n\\u001B[32m-> \\u001B[39m\\u001B[32m1396\\u001B[39m \\u001B[38;5;28;01mreturn\\u001B[39;00m \\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43m_input_request\\u001B[49m\\u001B[43m(\\u001B[49m\\n\\u001B[32m   1397\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[38;5;28;43mstr\\u001B[39;49m\\u001B[43m(\\u001B[49m\\u001B[43mprompt\\u001B[49m\\u001B[43m)\\u001B[49m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1398\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43m_get_shell_context_var\\u001B[49m\\u001B[43m(\\u001B[49m\\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43m_shell_parent_ident\\u001B[49m\\u001B[43m)\\u001B[49m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1399\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43mget_parent\\u001B[49m\\u001B[43m(\\u001B[49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[33;43mshell\\u001B[39;49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[43m)\\u001B[49m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1400\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[43mpassword\\u001B[49m\\u001B[43m=\\u001B[49m\\u001B[38;5;28;43;01mFalse\\u001B[39;49;00m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1401\\u001B[39m \\u001B[43m\\u001B[49m\\u001B[43m)\\u001B[49m\\n\",\r\n      \"\\u001B[36mFile \\u001B[39m\\u001B[32m~\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\Lib\\\\site-packages\\\\ipykernel\\\\kernelbase.py:1441\\u001B[39m, in \\u001B[36mKernel._input_request\\u001B[39m\\u001B[34m(self, prompt, ident, parent, password)\\u001B[39m\\n\\u001B[32m   1438\\u001B[39m \\u001B[38;5;28;01mexcept\\u001B[39;00m \\u001B[38;5;167;01mKeyboardInterrupt\\u001B[39;00m:\\n\\u001B[32m   1439\\u001B[39m     \\u001B[38;5;66;03m# re-raise KeyboardInterrupt, to truncate traceback\\u001B[39;00m\\n\\u001B[32m   1440\\u001B[39m     msg = \\u001B[33m\\\"\\u001B[39m\\u001B[33mInterrupted by user\\u001B[39m\\u001B[33m\\\"\\u001B[39m\\n\\u001B[32m-> \\u001B[39m\\u001B[32m1441\\u001B[39m     \\u001B[38;5;28;01mraise\\u001B[39;00m \\u001B[38;5;167;01mKeyboardInterrupt\\u001B[39;00m(msg) \\u001B[38;5;28;01mfrom\\u001B[39;00m\\u001B[38;5;250m \\u001B[39m\\u001B[38;5;28;01mNone\\u001B[39;00m\\n\\u001B[32m   1442\\u001B[39m \\u001B[38;5;28;01mexcept\\u001B[39;00m \\u001B[38;5;167;01mException\\u001B[39;00m:\\n\\u001B[32m   1443\\u001B[39m     \\u001B[38;5;28mself\\u001B[39m.log.warning(\\u001B[33m\\\"\\u001B[39m\\u001B[33mInvalid Message:\\u001B[39m\\u001B[33m\\\"\\u001B[39m, exc_info=\\u001B[38;5;28;01mTrue\\u001B[39;00m)\\n\",\r\n      \"\\u001B[31mKeyboardInterrupt\\u001B[39m: Interrupted by user\"\r\n     ]\r\n    }\r\n   ],\r\n   \"execution_count\": 9\r\n  }\r\n ],\r\n \"metadata\": {\r\n  \"kernelspec\": {\r\n   \"name\": \"python3\",\r\n   \"language\": \"python\",\r\n   \"display_name\": \"Python 3 (ipykernel)\"\r\n  }\r\n },\r\n \"nbformat\": 4,\r\n \"nbformat_minor\": 5\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DataDownload.ipynb b/DataDownload.ipynb
+--- a/DataDownload.ipynb	(revision 0e891f3aa2b822603855bc31a6070985f4e5ec30)
++++ b/DataDownload.ipynb	(date 1761968430709)
+@@ -3,8 +3,8 @@
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:44:25.071631Z",
+-     "start_time": "2025-11-01T02:44:25.064287Z"
++     "end_time": "2025-11-01T03:40:07.606562Z",
++     "start_time": "2025-11-01T03:40:07.143739Z"
+     }
+    },
+    "cell_type": "code",
+@@ -14,13 +14,13 @@
+    ],
+    "id": "4d83cf1f2fdb4ab9",
+    "outputs": [],
+-   "execution_count": 7
++   "execution_count": 1
+   },
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:44:25.108468Z",
+-     "start_time": "2025-11-01T02:44:25.100345Z"
++     "end_time": "2025-11-01T03:40:07.615831Z",
++     "start_time": "2025-11-01T03:40:07.612398Z"
+     }
+    },
+    "cell_type": "code",
+@@ -57,13 +57,13 @@
+    ],
+    "id": "559b4baaa7fe4726",
+    "outputs": [],
+-   "execution_count": 8
++   "execution_count": 2
+   },
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:44:29.021024Z",
+-     "start_time": "2025-11-01T02:44:25.122166Z"
++     "end_time": "2025-11-01T03:40:12.769089Z",
++     "start_time": "2025-11-01T03:40:07.620817Z"
+     }
+    },
+    "cell_type": "code",
+@@ -80,20 +80,14 @@
+    "id": "3b0316c0fbfc44df",
+    "outputs": [
+     {
+-     "ename": "KeyboardInterrupt",
+-     "evalue": "Interrupted by user",
+-     "output_type": "error",
+-     "traceback": [
+-      "\u001B[31m---------------------------------------------------------------------------\u001B[39m",
+-      "\u001B[31mKeyboardInterrupt\u001B[39m                         Traceback (most recent call last)",
+-      "\u001B[36mCell\u001B[39m\u001B[36m \u001B[39m\u001B[32mIn[9]\u001B[39m\u001B[32m, line 3\u001B[39m\n\u001B[32m      1\u001B[39m \u001B[38;5;28;01mif\u001B[39;00m \u001B[34m__name__\u001B[39m == \u001B[33m\"\u001B[39m\u001B[33m__main__\u001B[39m\u001B[33m\"\u001B[39m:\n\u001B[32m      2\u001B[39m     \u001B[38;5;66;03m# Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\u001B[39;00m\n\u001B[32m----> \u001B[39m\u001B[32m3\u001B[39m     tickers_input = \u001B[38;5;28;43minput\u001B[39;49m\u001B[43m(\u001B[49m\u001B[33;43m\"\u001B[39;49m\u001B[33;43mNhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \u001B[39;49m\u001B[33;43m\"\u001B[39;49m\u001B[43m)\u001B[49m.strip()\n\u001B[32m      4\u001B[39m     tickers = [t.strip().upper() \u001B[38;5;28;01mfor\u001B[39;00m t \u001B[38;5;129;01min\u001B[39;00m tickers_input.split(\u001B[33m\"\u001B[39m\u001B[33m,\u001B[39m\u001B[33m\"\u001B[39m) \u001B[38;5;28;01mif\u001B[39;00m t.strip() != \u001B[33m\"\u001B[39m\u001B[33m\"\u001B[39m]\n\u001B[32m      6\u001B[39m     \u001B[38;5;66;03m# Tải và lưu từng mã với dữ liệu từng ngày (daily)\u001B[39;00m\n",
+-      "\u001B[36mFile \u001B[39m\u001B[32m~\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\ipykernel\\kernelbase.py:1396\u001B[39m, in \u001B[36mKernel.raw_input\u001B[39m\u001B[34m(self, prompt)\u001B[39m\n\u001B[32m   1394\u001B[39m     msg = \u001B[33m\"\u001B[39m\u001B[33mraw_input was called, but this frontend does not support input requests.\u001B[39m\u001B[33m\"\u001B[39m\n\u001B[32m   1395\u001B[39m     \u001B[38;5;28;01mraise\u001B[39;00m StdinNotImplementedError(msg)\n\u001B[32m-> \u001B[39m\u001B[32m1396\u001B[39m \u001B[38;5;28;01mreturn\u001B[39;00m \u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43m_input_request\u001B[49m\u001B[43m(\u001B[49m\n\u001B[32m   1397\u001B[39m \u001B[43m    \u001B[49m\u001B[38;5;28;43mstr\u001B[39;49m\u001B[43m(\u001B[49m\u001B[43mprompt\u001B[49m\u001B[43m)\u001B[49m\u001B[43m,\u001B[49m\n\u001B[32m   1398\u001B[39m \u001B[43m    \u001B[49m\u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43m_get_shell_context_var\u001B[49m\u001B[43m(\u001B[49m\u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43m_shell_parent_ident\u001B[49m\u001B[43m)\u001B[49m\u001B[43m,\u001B[49m\n\u001B[32m   1399\u001B[39m \u001B[43m    \u001B[49m\u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43mget_parent\u001B[49m\u001B[43m(\u001B[49m\u001B[33;43m\"\u001B[39;49m\u001B[33;43mshell\u001B[39;49m\u001B[33;43m\"\u001B[39;49m\u001B[43m)\u001B[49m\u001B[43m,\u001B[49m\n\u001B[32m   1400\u001B[39m \u001B[43m    \u001B[49m\u001B[43mpassword\u001B[49m\u001B[43m=\u001B[49m\u001B[38;5;28;43;01mFalse\u001B[39;49;00m\u001B[43m,\u001B[49m\n\u001B[32m   1401\u001B[39m \u001B[43m\u001B[49m\u001B[43m)\u001B[49m\n",
+-      "\u001B[36mFile \u001B[39m\u001B[32m~\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\ipykernel\\kernelbase.py:1441\u001B[39m, in \u001B[36mKernel._input_request\u001B[39m\u001B[34m(self, prompt, ident, parent, password)\u001B[39m\n\u001B[32m   1438\u001B[39m \u001B[38;5;28;01mexcept\u001B[39;00m \u001B[38;5;167;01mKeyboardInterrupt\u001B[39;00m:\n\u001B[32m   1439\u001B[39m     \u001B[38;5;66;03m# re-raise KeyboardInterrupt, to truncate traceback\u001B[39;00m\n\u001B[32m   1440\u001B[39m     msg = \u001B[33m\"\u001B[39m\u001B[33mInterrupted by user\u001B[39m\u001B[33m\"\u001B[39m\n\u001B[32m-> \u001B[39m\u001B[32m1441\u001B[39m     \u001B[38;5;28;01mraise\u001B[39;00m \u001B[38;5;167;01mKeyboardInterrupt\u001B[39;00m(msg) \u001B[38;5;28;01mfrom\u001B[39;00m\u001B[38;5;250m \u001B[39m\u001B[38;5;28;01mNone\u001B[39;00m\n\u001B[32m   1442\u001B[39m \u001B[38;5;28;01mexcept\u001B[39;00m \u001B[38;5;167;01mException\u001B[39;00m:\n\u001B[32m   1443\u001B[39m     \u001B[38;5;28mself\u001B[39m.log.warning(\u001B[33m\"\u001B[39m\u001B[33mInvalid Message:\u001B[39m\u001B[33m\"\u001B[39m, exc_info=\u001B[38;5;28;01mTrue\u001B[39;00m)\n",
+-      "\u001B[31mKeyboardInterrupt\u001B[39m: Interrupted by user"
++     "name": "stderr",
++     "output_type": "stream",
++     "text": [
++      "[*********************100%***********************]  1 of 1 completed\n"
+      ]
+     }
+    ],
+-   "execution_count": 9
++   "execution_count": 3
+   }
+  ],
+  "metadata": {

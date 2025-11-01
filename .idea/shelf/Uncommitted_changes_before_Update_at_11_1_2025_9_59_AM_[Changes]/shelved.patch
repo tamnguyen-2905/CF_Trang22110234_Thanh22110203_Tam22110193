@@ -1,0 +1,81 @@
+Index: DataDownload.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n \"cells\": [\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:44:25.071631Z\",\r\n     \"start_time\": \"2025-11-01T02:44:25.064287Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"import yfinance as yf\\n\",\r\n    \"import pandas as pd\"\r\n   ],\r\n   \"id\": \"4d83cf1f2fdb4ab9\",\r\n   \"outputs\": [],\r\n   \"execution_count\": 7\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:44:25.108468Z\",\r\n     \"start_time\": \"2025-11-01T02:44:25.100345Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"def download_stock_data(ticker_symbol: str, period: str = \\\"max\\\"):\\n\",\r\n    \"    \\\"\\\"\\\"\\n\",\r\n    \"    Tải dữ liệu cổ phiếu từ Yahoo Finance bao gồm:\\n\",\r\n    \"    Open, High, Low, Close, Adj Close, Volume.\\n\",\r\n    \"    \\\"\\\"\\\"\\n\",\r\n    \"\\n\",\r\n    \"    try:\\n\",\r\n    \"        # Tải dữ liệu theo từng ngày (interval='1d')\\n\",\r\n    \"        data = yf.download(ticker_symbol, period=period, interval=\\\"1d\\\", auto_adjust=False)\\n\",\r\n    \"\\n\",\r\n    \"        if data.empty:\\n\",\r\n    \"            print(f\\\"Không tìm thấy dữ liệu cho mã {ticker_symbol}.\\\")\\n\",\r\n    \"            return None\\n\",\r\n    \"\\n\",\r\n    \"        # Nếu cột có MultiIndex (Price, Ticker) → gỡ bỏ cấp đầu\\n\",\r\n    \"        if isinstance(data.columns, pd.MultiIndex):\\n\",\r\n    \"            data.columns = data.columns.get_level_values(0)\\n\",\r\n    \"\\n\",\r\n    \"        # Giữ lại các cột cần thiết\\n\",\r\n    \"        data = data[['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']]\\n\",\r\n    \"\\n\",\r\n    \"        # Đưa index 'Date' ra thành cột\\n\",\r\n    \"        data.reset_index(inplace=True)\\n\",\r\n    \"\\n\",\r\n    \"        return data\\n\",\r\n    \"\\n\",\r\n    \"    except Exception as e:\\n\",\r\n    \"        print(f\\\"Lỗi khi tải dữ liệu {ticker_symbol}: {e}\\\")\\n\",\r\n    \"        return None\"\r\n   ],\r\n   \"id\": \"559b4baaa7fe4726\",\r\n   \"outputs\": [],\r\n   \"execution_count\": 8\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:44:29.021024Z\",\r\n     \"start_time\": \"2025-11-01T02:44:25.122166Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"if __name__ == \\\"__main__\\\":\\n\",\r\n    \"    # Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\\n\",\r\n    \"    tickers_input = input(\\\"Nhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \\\").strip()\\n\",\r\n    \"    tickers = [t.strip().upper() for t in tickers_input.split(\\\",\\\") if t.strip() != \\\"\\\"]\\n\",\r\n    \"\\n\",\r\n    \"    # Tải và lưu từng mã với dữ liệu từng ngày (daily)\\n\",\r\n    \"    for ticker in tickers:\\n\",\r\n    \"        data = download_stock_data(ticker, period=\\\"max\\\")\"\r\n   ],\r\n   \"id\": \"3b0316c0fbfc44df\",\r\n   \"outputs\": [\r\n    {\r\n     \"ename\": \"KeyboardInterrupt\",\r\n     \"evalue\": \"Interrupted by user\",\r\n     \"output_type\": \"error\",\r\n     \"traceback\": [\r\n      \"\\u001B[31m---------------------------------------------------------------------------\\u001B[39m\",\r\n      \"\\u001B[31mKeyboardInterrupt\\u001B[39m                         Traceback (most recent call last)\",\r\n      \"\\u001B[36mCell\\u001B[39m\\u001B[36m \\u001B[39m\\u001B[32mIn[9]\\u001B[39m\\u001B[32m, line 3\\u001B[39m\\n\\u001B[32m      1\\u001B[39m \\u001B[38;5;28;01mif\\u001B[39;00m \\u001B[34m__name__\\u001B[39m == \\u001B[33m\\\"\\u001B[39m\\u001B[33m__main__\\u001B[39m\\u001B[33m\\\"\\u001B[39m:\\n\\u001B[32m      2\\u001B[39m     \\u001B[38;5;66;03m# Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\\u001B[39;00m\\n\\u001B[32m----> \\u001B[39m\\u001B[32m3\\u001B[39m     tickers_input = \\u001B[38;5;28;43minput\\u001B[39;49m\\u001B[43m(\\u001B[49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[33;43mNhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \\u001B[39;49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[43m)\\u001B[49m.strip()\\n\\u001B[32m      4\\u001B[39m     tickers = [t.strip().upper() \\u001B[38;5;28;01mfor\\u001B[39;00m t \\u001B[38;5;129;01min\\u001B[39;00m tickers_input.split(\\u001B[33m\\\"\\u001B[39m\\u001B[33m,\\u001B[39m\\u001B[33m\\\"\\u001B[39m) \\u001B[38;5;28;01mif\\u001B[39;00m t.strip() != \\u001B[33m\\\"\\u001B[39m\\u001B[33m\\\"\\u001B[39m]\\n\\u001B[32m      6\\u001B[39m     \\u001B[38;5;66;03m# Tải và lưu từng mã với dữ liệu từng ngày (daily)\\u001B[39;00m\\n\",\r\n      \"\\u001B[36mFile \\u001B[39m\\u001B[32m~\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\Lib\\\\site-packages\\\\ipykernel\\\\kernelbase.py:1396\\u001B[39m, in \\u001B[36mKernel.raw_input\\u001B[39m\\u001B[34m(self, prompt)\\u001B[39m\\n\\u001B[32m   1394\\u001B[39m     msg = \\u001B[33m\\\"\\u001B[39m\\u001B[33mraw_input was called, but this frontend does not support input requests.\\u001B[39m\\u001B[33m\\\"\\u001B[39m\\n\\u001B[32m   1395\\u001B[39m     \\u001B[38;5;28;01mraise\\u001B[39;00m StdinNotImplementedError(msg)\\n\\u001B[32m-> \\u001B[39m\\u001B[32m1396\\u001B[39m \\u001B[38;5;28;01mreturn\\u001B[39;00m \\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43m_input_request\\u001B[49m\\u001B[43m(\\u001B[49m\\n\\u001B[32m   1397\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[38;5;28;43mstr\\u001B[39;49m\\u001B[43m(\\u001B[49m\\u001B[43mprompt\\u001B[49m\\u001B[43m)\\u001B[49m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1398\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43m_get_shell_context_var\\u001B[49m\\u001B[43m(\\u001B[49m\\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43m_shell_parent_ident\\u001B[49m\\u001B[43m)\\u001B[49m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1399\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[38;5;28;43mself\\u001B[39;49m\\u001B[43m.\\u001B[49m\\u001B[43mget_parent\\u001B[49m\\u001B[43m(\\u001B[49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[33;43mshell\\u001B[39;49m\\u001B[33;43m\\\"\\u001B[39;49m\\u001B[43m)\\u001B[49m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1400\\u001B[39m \\u001B[43m    \\u001B[49m\\u001B[43mpassword\\u001B[49m\\u001B[43m=\\u001B[49m\\u001B[38;5;28;43;01mFalse\\u001B[39;49;00m\\u001B[43m,\\u001B[49m\\n\\u001B[32m   1401\\u001B[39m \\u001B[43m\\u001B[49m\\u001B[43m)\\u001B[49m\\n\",\r\n      \"\\u001B[36mFile \\u001B[39m\\u001B[32m~\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\Lib\\\\site-packages\\\\ipykernel\\\\kernelbase.py:1441\\u001B[39m, in \\u001B[36mKernel._input_request\\u001B[39m\\u001B[34m(self, prompt, ident, parent, password)\\u001B[39m\\n\\u001B[32m   1438\\u001B[39m \\u001B[38;5;28;01mexcept\\u001B[39;00m \\u001B[38;5;167;01mKeyboardInterrupt\\u001B[39;00m:\\n\\u001B[32m   1439\\u001B[39m     \\u001B[38;5;66;03m# re-raise KeyboardInterrupt, to truncate traceback\\u001B[39;00m\\n\\u001B[32m   1440\\u001B[39m     msg = \\u001B[33m\\\"\\u001B[39m\\u001B[33mInterrupted by user\\u001B[39m\\u001B[33m\\\"\\u001B[39m\\n\\u001B[32m-> \\u001B[39m\\u001B[32m1441\\u001B[39m     \\u001B[38;5;28;01mraise\\u001B[39;00m \\u001B[38;5;167;01mKeyboardInterrupt\\u001B[39;00m(msg) \\u001B[38;5;28;01mfrom\\u001B[39;00m\\u001B[38;5;250m \\u001B[39m\\u001B[38;5;28;01mNone\\u001B[39;00m\\n\\u001B[32m   1442\\u001B[39m \\u001B[38;5;28;01mexcept\\u001B[39;00m \\u001B[38;5;167;01mException\\u001B[39;00m:\\n\\u001B[32m   1443\\u001B[39m     \\u001B[38;5;28mself\\u001B[39m.log.warning(\\u001B[33m\\\"\\u001B[39m\\u001B[33mInvalid Message:\\u001B[39m\\u001B[33m\\\"\\u001B[39m, exc_info=\\u001B[38;5;28;01mTrue\\u001B[39;00m)\\n\",\r\n      \"\\u001B[31mKeyboardInterrupt\\u001B[39m: Interrupted by user\"\r\n     ]\r\n    }\r\n   ],\r\n   \"execution_count\": 9\r\n  }\r\n ],\r\n \"metadata\": {\r\n  \"kernelspec\": {\r\n   \"name\": \"python3\",\r\n   \"language\": \"python\",\r\n   \"display_name\": \"Python 3 (ipykernel)\"\r\n  }\r\n },\r\n \"nbformat\": 4,\r\n \"nbformat_minor\": 5\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DataDownload.ipynb b/DataDownload.ipynb
+--- a/DataDownload.ipynb	(revision 6333294818e527b7566ac36b5dcb9508950f8d09)
++++ b/DataDownload.ipynb	(date 1761965947594)
+@@ -3,8 +3,8 @@
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:44:25.071631Z",
+-     "start_time": "2025-11-01T02:44:25.064287Z"
++     "end_time": "2025-11-01T02:55:29.606370Z",
++     "start_time": "2025-11-01T02:55:29.598821Z"
+     }
+    },
+    "cell_type": "code",
+@@ -14,13 +14,13 @@
+    ],
+    "id": "4d83cf1f2fdb4ab9",
+    "outputs": [],
+-   "execution_count": 7
++   "execution_count": 13
+   },
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:44:25.108468Z",
+-     "start_time": "2025-11-01T02:44:25.100345Z"
++     "end_time": "2025-11-01T02:56:02.748895Z",
++     "start_time": "2025-11-01T02:56:02.738079Z"
+     }
+    },
+    "cell_type": "code",
+@@ -57,13 +57,13 @@
+    ],
+    "id": "559b4baaa7fe4726",
+    "outputs": [],
+-   "execution_count": 8
++   "execution_count": 16
+   },
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:44:29.021024Z",
+-     "start_time": "2025-11-01T02:44:25.122166Z"
++     "end_time": "2025-11-01T02:58:06.264884Z",
++     "start_time": "2025-11-01T02:58:01.165922Z"
+     }
+    },
+    "cell_type": "code",
+@@ -80,20 +80,14 @@
+    "id": "3b0316c0fbfc44df",
+    "outputs": [
+     {
+-     "ename": "KeyboardInterrupt",
+-     "evalue": "Interrupted by user",
+-     "output_type": "error",
+-     "traceback": [
+-      "\u001B[31m---------------------------------------------------------------------------\u001B[39m",
+-      "\u001B[31mKeyboardInterrupt\u001B[39m                         Traceback (most recent call last)",
+-      "\u001B[36mCell\u001B[39m\u001B[36m \u001B[39m\u001B[32mIn[9]\u001B[39m\u001B[32m, line 3\u001B[39m\n\u001B[32m      1\u001B[39m \u001B[38;5;28;01mif\u001B[39;00m \u001B[34m__name__\u001B[39m == \u001B[33m\"\u001B[39m\u001B[33m__main__\u001B[39m\u001B[33m\"\u001B[39m:\n\u001B[32m      2\u001B[39m     \u001B[38;5;66;03m# Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\u001B[39;00m\n\u001B[32m----> \u001B[39m\u001B[32m3\u001B[39m     tickers_input = \u001B[38;5;28;43minput\u001B[39;49m\u001B[43m(\u001B[49m\u001B[33;43m\"\u001B[39;49m\u001B[33;43mNhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \u001B[39;49m\u001B[33;43m\"\u001B[39;49m\u001B[43m)\u001B[49m.strip()\n\u001B[32m      4\u001B[39m     tickers = [t.strip().upper() \u001B[38;5;28;01mfor\u001B[39;00m t \u001B[38;5;129;01min\u001B[39;00m tickers_input.split(\u001B[33m\"\u001B[39m\u001B[33m,\u001B[39m\u001B[33m\"\u001B[39m) \u001B[38;5;28;01mif\u001B[39;00m t.strip() != \u001B[33m\"\u001B[39m\u001B[33m\"\u001B[39m]\n\u001B[32m      6\u001B[39m     \u001B[38;5;66;03m# Tải và lưu từng mã với dữ liệu từng ngày (daily)\u001B[39;00m\n",
+-      "\u001B[36mFile \u001B[39m\u001B[32m~\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\ipykernel\\kernelbase.py:1396\u001B[39m, in \u001B[36mKernel.raw_input\u001B[39m\u001B[34m(self, prompt)\u001B[39m\n\u001B[32m   1394\u001B[39m     msg = \u001B[33m\"\u001B[39m\u001B[33mraw_input was called, but this frontend does not support input requests.\u001B[39m\u001B[33m\"\u001B[39m\n\u001B[32m   1395\u001B[39m     \u001B[38;5;28;01mraise\u001B[39;00m StdinNotImplementedError(msg)\n\u001B[32m-> \u001B[39m\u001B[32m1396\u001B[39m \u001B[38;5;28;01mreturn\u001B[39;00m \u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43m_input_request\u001B[49m\u001B[43m(\u001B[49m\n\u001B[32m   1397\u001B[39m \u001B[43m    \u001B[49m\u001B[38;5;28;43mstr\u001B[39;49m\u001B[43m(\u001B[49m\u001B[43mprompt\u001B[49m\u001B[43m)\u001B[49m\u001B[43m,\u001B[49m\n\u001B[32m   1398\u001B[39m \u001B[43m    \u001B[49m\u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43m_get_shell_context_var\u001B[49m\u001B[43m(\u001B[49m\u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43m_shell_parent_ident\u001B[49m\u001B[43m)\u001B[49m\u001B[43m,\u001B[49m\n\u001B[32m   1399\u001B[39m \u001B[43m    \u001B[49m\u001B[38;5;28;43mself\u001B[39;49m\u001B[43m.\u001B[49m\u001B[43mget_parent\u001B[49m\u001B[43m(\u001B[49m\u001B[33;43m\"\u001B[39;49m\u001B[33;43mshell\u001B[39;49m\u001B[33;43m\"\u001B[39;49m\u001B[43m)\u001B[49m\u001B[43m,\u001B[49m\n\u001B[32m   1400\u001B[39m \u001B[43m    \u001B[49m\u001B[43mpassword\u001B[49m\u001B[43m=\u001B[49m\u001B[38;5;28;43;01mFalse\u001B[39;49;00m\u001B[43m,\u001B[49m\n\u001B[32m   1401\u001B[39m \u001B[43m\u001B[49m\u001B[43m)\u001B[49m\n",
+-      "\u001B[36mFile \u001B[39m\u001B[32m~\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\ipykernel\\kernelbase.py:1441\u001B[39m, in \u001B[36mKernel._input_request\u001B[39m\u001B[34m(self, prompt, ident, parent, password)\u001B[39m\n\u001B[32m   1438\u001B[39m \u001B[38;5;28;01mexcept\u001B[39;00m \u001B[38;5;167;01mKeyboardInterrupt\u001B[39;00m:\n\u001B[32m   1439\u001B[39m     \u001B[38;5;66;03m# re-raise KeyboardInterrupt, to truncate traceback\u001B[39;00m\n\u001B[32m   1440\u001B[39m     msg = \u001B[33m\"\u001B[39m\u001B[33mInterrupted by user\u001B[39m\u001B[33m\"\u001B[39m\n\u001B[32m-> \u001B[39m\u001B[32m1441\u001B[39m     \u001B[38;5;28;01mraise\u001B[39;00m \u001B[38;5;167;01mKeyboardInterrupt\u001B[39;00m(msg) \u001B[38;5;28;01mfrom\u001B[39;00m\u001B[38;5;250m \u001B[39m\u001B[38;5;28;01mNone\u001B[39;00m\n\u001B[32m   1442\u001B[39m \u001B[38;5;28;01mexcept\u001B[39;00m \u001B[38;5;167;01mException\u001B[39;00m:\n\u001B[32m   1443\u001B[39m     \u001B[38;5;28mself\u001B[39m.log.warning(\u001B[33m\"\u001B[39m\u001B[33mInvalid Message:\u001B[39m\u001B[33m\"\u001B[39m, exc_info=\u001B[38;5;28;01mTrue\u001B[39;00m)\n",
+-      "\u001B[31mKeyboardInterrupt\u001B[39m: Interrupted by user"
++     "name": "stderr",
++     "output_type": "stream",
++     "text": [
++      "[*********************100%***********************]  1 of 1 completed\n"
+      ]
+     }
+    ],
+-   "execution_count": 9
++   "execution_count": 18
+   }
+  ],
+  "metadata": {

@@ -1,0 +1,8 @@
+Index: nhap.py
+===================================================================
+diff --git a/nhap.py b/nhap.py
+new file mode 100644
+--- /dev/null	(date 1761963411851)
++++ b/nhap.py	(date 1761963411851)
+@@ -0,0 +1,1 @@
++print('hi')

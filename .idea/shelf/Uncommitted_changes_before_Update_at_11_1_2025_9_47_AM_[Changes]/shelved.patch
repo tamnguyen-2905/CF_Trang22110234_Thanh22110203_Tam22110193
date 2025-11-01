@@ -1,0 +1,103 @@
+Index: DataDownload.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n \"cells\": [\r\n  {\r\n   \"metadata\": {},\r\n   \"cell_type\": \"raw\",\r\n   \"outputs\": [],\r\n   \"execution_count\": null,\r\n   \"source\": \"print(\\\"hello\\\")\\n\",\r\n   \"id\": \"a0b2082bbadebc6d\"\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:16:42.512162Z\",\r\n     \"start_time\": \"2025-11-01T02:16:42.507Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": \"print(\\\"hello\\\")\",\r\n   \"id\": \"534ec940005cc5af\",\r\n   \"outputs\": [\r\n    {\r\n     \"name\": \"stdout\",\r\n     \"output_type\": \"stream\",\r\n     \"text\": [\r\n      \"hello\\n\"\r\n     ]\r\n    }\r\n   ],\r\n   \"execution_count\": 1\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:18:38.389455Z\",\r\n     \"start_time\": \"2025-11-01T02:18:36.968098Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"import yfinance as yf\\n\",\r\n    \"import pandas as pd\"\r\n   ],\r\n   \"id\": \"274e69f1628a358c\",\r\n   \"outputs\": [],\r\n   \"execution_count\": 2\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:19:19.672792Z\",\r\n     \"start_time\": \"2025-11-01T02:19:19.660188Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"def download_stock_data(ticker_symbol: str, period: str = \\\"max\\\"):\\n\",\r\n    \"    \\\"\\\"\\\"\\n\",\r\n    \"    Tải dữ liệu cổ phiếu từ Yahoo Finance bao gồm:\\n\",\r\n    \"    Open, High, Low, Close, Adj Close, Volume.\\n\",\r\n    \"    \\\"\\\"\\\"\\n\",\r\n    \"\\n\",\r\n    \"    try:\\n\",\r\n    \"        # Tải dữ liệu theo từng ngày (interval='1d')\\n\",\r\n    \"        data = yf.download(ticker_symbol, period=period, interval=\\\"1d\\\", auto_adjust=False)\\n\",\r\n    \"\\n\",\r\n    \"        if data.empty:\\n\",\r\n    \"            print(f\\\"Không tìm thấy dữ liệu cho mã {ticker_symbol}.\\\")\\n\",\r\n    \"            return None\\n\",\r\n    \"\\n\",\r\n    \"        # Nếu cột có MultiIndex (Price, Ticker) → gỡ bỏ cấp đầu\\n\",\r\n    \"        if isinstance(data.columns, pd.MultiIndex):\\n\",\r\n    \"            data.columns = data.columns.get_level_values(0)\\n\",\r\n    \"\\n\",\r\n    \"        # Giữ lại các cột cần thiết\\n\",\r\n    \"        data = data[['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']]\\n\",\r\n    \"\\n\",\r\n    \"        # Đưa index 'Date' ra thành cột\\n\",\r\n    \"        data.reset_index(inplace=True)\\n\",\r\n    \"\\n\",\r\n    \"        return data\\n\",\r\n    \"\\n\",\r\n    \"    except Exception as e:\\n\",\r\n    \"        print(f\\\"Lỗi khi tải dữ liệu {ticker_symbol}: {e}\\\")\\n\",\r\n    \"        return None\"\r\n   ],\r\n   \"id\": \"559b4baaa7fe4726\",\r\n   \"outputs\": [],\r\n   \"execution_count\": 3\r\n  },\r\n  {\r\n   \"metadata\": {\r\n    \"ExecuteTime\": {\r\n     \"end_time\": \"2025-11-01T02:20:16.231970Z\",\r\n     \"start_time\": \"2025-11-01T02:20:04.653756Z\"\r\n    }\r\n   },\r\n   \"cell_type\": \"code\",\r\n   \"source\": [\r\n    \"if __name__ == \\\"__main__\\\":\\n\",\r\n    \"    # Nhập mã cổ phiếu từ bàn phím (có thể nhập nhiều mã cách nhau bằng dấu phẩy)\\n\",\r\n    \"    tickers_input = input(\\\"Nhập mã cổ phiếu (ví dụ: AAPL, MSFT, NVDA): \\\").strip()\\n\",\r\n    \"    tickers = [t.strip().upper() for t in tickers_input.split(\\\",\\\") if t.strip() != \\\"\\\"]\\n\",\r\n    \"\\n\",\r\n    \"    # Tải và lưu từng mã với dữ liệu từng ngày (daily)\\n\",\r\n    \"    for ticker in tickers:\\n\",\r\n    \"        data = download_stock_data(ticker, period=\\\"max\\\")\"\r\n   ],\r\n   \"id\": \"3b0316c0fbfc44df\",\r\n   \"outputs\": [\r\n    {\r\n     \"name\": \"stderr\",\r\n     \"output_type\": \"stream\",\r\n     \"text\": [\r\n      \"[*********************100%***********************]  1 of 1 completed\\n\"\r\n     ]\r\n    }\r\n   ],\r\n   \"execution_count\": 4\r\n  }\r\n ],\r\n \"metadata\": {\r\n  \"kernelspec\": {\r\n   \"name\": \"python3\",\r\n   \"language\": \"python\",\r\n   \"display_name\": \"Python 3 (ipykernel)\"\r\n  }\r\n },\r\n \"nbformat\": 4,\r\n \"nbformat_minor\": 5\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DataDownload.ipynb b/DataDownload.ipynb
+--- a/DataDownload.ipynb	(revision 9417352d4ccaf90cc1f331dd840c182deca8becc)
++++ b/DataDownload.ipynb	(date 1761964266618)
+@@ -1,55 +1,10 @@
+ {
+  "cells": [
+   {
+-   "metadata": {},
+-   "cell_type": "raw",
+-   "outputs": [],
+-   "execution_count": null,
+-   "source": "print(\"hello\")\n",
+-   "id": "a0b2082bbadebc6d"
+-  },
+-  {
+-   "metadata": {
+-    "ExecuteTime": {
+-     "end_time": "2025-11-01T02:16:42.512162Z",
+-     "start_time": "2025-11-01T02:16:42.507Z"
+-    }
+-   },
+-   "cell_type": "code",
+-   "source": "print(\"hello\")",
+-   "id": "534ec940005cc5af",
+-   "outputs": [
+-    {
+-     "name": "stdout",
+-     "output_type": "stream",
+-     "text": [
+-      "hello\n"
+-     ]
+-    }
+-   ],
+-   "execution_count": 1
+-  },
+-  {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:18:38.389455Z",
+-     "start_time": "2025-11-01T02:18:36.968098Z"
+-    }
+-   },
+-   "cell_type": "code",
+-   "source": [
+-    "import yfinance as yf\n",
+-    "import pandas as pd"
+-   ],
+-   "id": "274e69f1628a358c",
+-   "outputs": [],
+-   "execution_count": 2
+-  },
+-  {
+-   "metadata": {
+-    "ExecuteTime": {
+-     "end_time": "2025-11-01T02:19:19.672792Z",
+-     "start_time": "2025-11-01T02:19:19.660188Z"
++     "end_time": "2025-11-01T02:30:29.127749Z",
++     "start_time": "2025-11-01T02:30:29.117682Z"
+     }
+    },
+    "cell_type": "code",
+@@ -86,13 +41,13 @@
+    ],
+    "id": "559b4baaa7fe4726",
+    "outputs": [],
+-   "execution_count": 3
++   "execution_count": 1
+   },
+   {
+    "metadata": {
+     "ExecuteTime": {
+-     "end_time": "2025-11-01T02:20:16.231970Z",
+-     "start_time": "2025-11-01T02:20:04.653756Z"
++     "end_time": "2025-11-01T02:30:49.898598Z",
++     "start_time": "2025-11-01T02:30:29.169151Z"
+     }
+    },
+    "cell_type": "code",
+@@ -109,14 +64,14 @@
+    "id": "3b0316c0fbfc44df",
+    "outputs": [
+     {
+-     "name": "stderr",
++     "name": "stdout",
+      "output_type": "stream",
+      "text": [
+-      "[*********************100%***********************]  1 of 1 completed\n"
++      "Lỗi khi tải dữ liệu NVDA: name 'yf' is not defined\n"
+      ]
+     }
+    ],
+-   "execution_count": 4
++   "execution_count": 2
+   }
+  ],
+  "metadata": {

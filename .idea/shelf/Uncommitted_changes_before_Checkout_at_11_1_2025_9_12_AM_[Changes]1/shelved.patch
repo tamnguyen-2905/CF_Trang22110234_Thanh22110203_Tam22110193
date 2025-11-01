@@ -1,0 +1,81 @@
+Index: DataDownload.ipynb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DataDownload.ipynb b/DataDownload.ipynb
+new file mode 100644
+--- /dev/null	(date 1761963113899)
++++ b/DataDownload.ipynb	(date 1761963113899)
+@@ -0,0 +1,71 @@
++{
++ "cells": [
++  {
++   "cell_type": "code",
++   "id": "initial_id",
++   "metadata": {
++    "collapsed": true,
++    "jupyter": {
++     "is_executing": true
++    }
++   },
++   "source": [
++    "import yfinance as yf\n",
++    "import pandas as pd\n",
++    "\n",
++    "def download_stock_data(ticker_symbol: str, period: str = \"max\"):\n",
++    "    \"\"\"\n",
++    "    Tải dữ liệu cổ phiếu từ Yahoo Finance bao gồm:\n",
++    "    Open, High, Low, Close, Adj Close, Volume.\n",
++    "    \"\"\"\n",
++    "\n",
++    "    try:\n",
++    "        # Tải dữ liệu theo từng ngày (interval='1d')\n",
++    "        data = yf.download(ticker_symbol, period=period, interval=\"1d\", auto_adjust=False)\n",
++    "\n",
++    "        if data.empty:\n",
++    "            print(f\"Không tìm thấy dữ liệu cho mã {ticker_symbol}.\")\n",
++    "            return None\n",
++    "\n",
++    "        # Nếu cột có MultiIndex (Price, Ticker) → gỡ bỏ cấp đầu\n",
++    "        if isinstance(data.columns, pd.MultiIndex):\n",
++    "            data.columns = data.columns.get_level_values(0)\n",
++    "\n",
++    "        # Giữ lại các cột cần thiết\n",
++    "        data = data[['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']]\n",
++    "\n",
++    "        # Đưa index 'Date' ra thành cột\n",
++    "        data.reset_index(inplace=True)\n",
++    "\n",
++    "        return data\n",
++    "\n",
++    "    except Exception as e:\n",
++    "        print(f\"Lỗi khi tải dữ liệu {ticker_symbol}: {e}\")\n",
++    "        return None\n"
++   ],
++   "outputs": [],
++   "execution_count": null
++  }
++ ],
++ "metadata": {
++  "kernelspec": {
++   "display_name": "Python 3",
++   "language": "python",
++   "name": "python3"
++  },
++  "language_info": {
++   "codemirror_mode": {
++    "name": "ipython",
++    "version": 2
++   },
++   "file_extension": ".py",
++   "mimetype": "text/x-python",
++   "name": "python",
++   "nbconvert_exporter": "python",
++   "pygments_lexer": "ipython2",
++   "version": "2.7.6"
++  }
++ },
++ "nbformat": 4,
++ "nbformat_minor": 5
++}

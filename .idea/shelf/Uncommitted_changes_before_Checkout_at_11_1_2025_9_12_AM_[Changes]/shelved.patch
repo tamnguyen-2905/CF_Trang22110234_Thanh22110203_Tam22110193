@@ -1,0 +1,62 @@
+Index: code.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>print('hello')
+===================================================================
+diff --git a/code.py b/code.py
+--- a/code.py	(revision 2f0a96e6544c733b7bb71141a6aae023a28912ac)
++++ b/code.py	(date 1761960599756)
+@@ -1,1 +1,51 @@
+-print('hello')
+\ No newline at end of file
++import yfinance as yf
++import pandas as pd
++import os
++
++def download_stock_data(ticker_symbol: str, period: str = "max"):
++    """
++    Tải dữ liệu cổ phiếu từ Yahoo Finance bao gồm:
++    Open, High, Low, Close, Adj Close, Volume.
++    """
++
++    try:
++        # Tải dữ liệu theo từng ngày (interval='1d')
++        data = yf.download(ticker_symbol, period=period, interval="1d", auto_adjust=False)
++
++        if data.empty:
++            print(f"Không tìm thấy dữ liệu cho mã {ticker_symbol}.")
++            return None
++
++        # Nếu cột có MultiIndex (Price, Ticker) → gỡ bỏ cấp đầu
++        if isinstance(data.columns, pd.MultiIndex):
++            data.columns = data.columns.get_level_values(0)
++
++        # Giữ lại các cột cần thiết
++        data = data[['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']]
++
++        # Đưa index 'Date' ra thành cột
++        data.reset_index(inplace=True)
++
++        return data
++
++    except Exception as e:
++        print(f"Lỗi khi tải dữ liệu {ticker_symbol}: {e}")
++        return None
++
++
++def save_data_to_csv(data: pd.DataFrame, ticker_symbol: str,
++                     drive_path: str = "/content/drive/MyDrive/StockData"):
++    """
++    Lưu dữ liệu cổ phiếu vào file CSV trong Google Drive.
++    Tên file có dạng: TICKER_dd_mm.csv
++    """
++    if not os.path.exists(drive_path):
++        os.makedirs(drive_path)
++        print(f"📁 Đã tạo thư mục: {drive_path}")
++
++    # Đặt tên file theo ngày tải
++    date_str = pd.Timestamp.now().strftime("%d_%m")
++    filename = os.path.join(drive_path, f"{ticker_symbol}_{date_str}.csv")
++
++    # Lưu file CSV (không ghi index)
++    data.to_csv(filename, index=False)

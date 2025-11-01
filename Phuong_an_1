@@ -1,0 +1,20 @@
+## Thu thập dữ liệu gồm OHLC data và corporate action data
+## Xử lý dữ liệu
+- Stock Split
+- Dividends
+- Missing values & outliers
+## Technical Indicators and Build Signal
+- Stock Return (Log Returns)
+- Build Momentum Signal (tín hiệu có thể là vị trí của giá so với Simple Moving Average (SMA)
+hoặc Bollinger Bands)
+## Cross-sectional
+- Ranking
+- Long/Short Position (Mua/Bán n cổ phiếu có thứ hạng cao đến thấp/thấp đến cao, Equal Weighting)
+- Rebalancing (Giữ danh mục đầu tư này trong 1 tháng. Vào cuối tháng, đóng tất cả các vị thế, tính toán lại signal,
+ranking lại, và mở các vị thế long/short mới cho tháng tiếp theo.)
+## Backtesting
+- Tính lợi nhuận hàng tháng của danh mục. Lợi nhuận của danh mục là trung bình của lợi nhuận từ các vị thế long và short.
+- Statistical Analysis (Hypothesis Testing, "Alpha" - lợi nhuận vượt trội so với thị trường chuẩn,
+
+
+

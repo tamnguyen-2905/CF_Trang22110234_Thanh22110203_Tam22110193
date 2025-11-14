@@ -1,4 +1,4 @@
-﻿"""
+"""
 Full Trading Lab (Week1–3) – 6 strategies:
 1) SMA crossover (AAPL)
 2) Bollinger mean-reversion (AAPL)
@@ -29,7 +29,7 @@ def download_ohlcv(tickers, start, end=None, interval='1d'):
                          progress=False, auto_adjust=False)
 
         if df.empty:
-            print(f"⚠ WARNING: No data for {t}")
+            print(f"WARNING: No data for {t}")
             continue
 
         if isinstance(df.columns, pd.MultiIndex):
@@ -300,5 +300,5 @@ if __name__ == "__main__":
     plt.savefig("outputs/combined_strategies_equity.png", dpi=300)
     plt.show()
 
-    print("\n✔ All outputs saved to folder: outputs/")
+    print("\nAll outputs saved to folder: outputs/")
 

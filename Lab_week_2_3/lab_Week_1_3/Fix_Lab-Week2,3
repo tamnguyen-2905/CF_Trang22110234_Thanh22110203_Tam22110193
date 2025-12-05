@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 # 2) Config
 TICKERS = [
     "AAPL","MSFT","AMZN","GOOGL","TSLA","META","JNJ","BAC","XOM","WMT",
-    "ABT","ACN","BK","CL","DHR","EMR","FDX","GIS","HAL","ITW",
     "KHC","LMT","MAR","NEM","PNC","ROP","STZ","TT","VLO","ZTS"
 ]
 START_DATE = "2015-01-01"

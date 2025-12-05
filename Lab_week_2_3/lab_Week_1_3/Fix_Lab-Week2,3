@@ -1,0 +1,438 @@
+# =========================
+# Lab W2-3 — ALL-IN-ONE Colab Cell
+# Paste this entire cell into Google Colab and run.
+# =========================
+
+# 0) Install dependencies
+!pip install yfinance pandas matplotlib numpy --quiet
+
+# 1) Imports
+import os, sys, datetime as dt, warnings
+warnings.filterwarnings("ignore")
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+# 2) Config
+TICKERS = [
+    "AAPL","MSFT","AMZN","GOOGL","TSLA","META","JNJ","BAC","XOM","WMT",
+    "ABT","ACN","BK","CL","DHR","EMR","FDX","GIS","HAL","ITW",
+    "KHC","LMT","MAR","NEM","PNC","ROP","STZ","TT","VLO","ZTS"
+]
+START_DATE = "2015-01-01"
+END_DATE = None
+OUTPUT_ROOT = "/content/outputs_colab"
+TRADING_COST = 0.001
+MOM_LOOKBACK_MONTHS = 6
+MOM_TOP_N = 10
+MOM_BOTTOM_N = 10
+
+os.makedirs(OUTPUT_ROOT, exist_ok=True)
+print("Output root:", OUTPUT_ROOT)
+
+# -------------------------
+# 3) Data loader & helpers
+# -------------------------
+def download_ohlcv(tickers, start, end=None, interval="1d", auto_adjust=False):
+    if end is None:
+        end = dt.date.today().isoformat()
+    data = {}
+    for t in tickers:
+        try:
+            df = yf.download(t, start=start, end=end, interval=interval, progress=False, auto_adjust=auto_adjust)
+        except Exception as e:
+            print(f"Warning: download failed for {t}: {e}")
+            continue
+        if df is None or df.empty:
+            print(f"Warning: no data for {t}")
+            continue
+        if isinstance(df.columns, pd.MultiIndex):
+            df.columns = df.columns.get_level_values(0)
+        if "Adj Close" not in df.columns and "Close" in df.columns:
+            df["Adj Close"] = df["Close"]
+        df.index = pd.to_datetime(df.index)
+        df = df.sort_index()
+        data[t] = df[["Open", "High", "Low", "Close", "Adj Close", "Volume"]].copy()
+    return data
+
+def build_price_matrix(data):
+    price = pd.DataFrame({t: df["Adj Close"] for t, df in data.items()})
+    price = price.sort_index()
+    # Forward-fill small gaps (days when some tickers not traded)
+    price = price.ffill().bfill()
+    return price
+
+# -------------------------
+# 4) Fundamentals (basic)
+# -------------------------
+def fetch_basic_fundamentals(tickers):
+    rows=[]
+    for t in tickers:
+        tk = yf.Ticker(t)
+        try:
+            info = tk.info
+        except Exception:
+            info = {}
+        rows.append({
+            "ticker": t,
+            "marketCap": info.get("marketCap"),
+            "trailingPE": info.get("trailingPE"),
+            "forwardPE": info.get("forwardPE"),
+            "epsTTM": info.get("trailingEps"),
+            "revenueTTM": info.get("totalRevenue"),
+            "dividendYield": info.get("dividendYield"),
+            "pbRatio": info.get("priceToBook"),
+            "beta": info.get("beta"),
+            "sector": info.get("sector")
+        })
+    df = pd.DataFrame(rows).set_index("ticker")
+    return df
+
+def classify_growth_value(fund, pe_thresh=20.0):
+    df = fund.copy()
+    df["epsTTM"] = pd.to_numeric(df["epsTTM"], errors="coerce")
+    df["trailingPE"] = pd.to_numeric(df["trailingPE"], errors="coerce")
+    df["growth_flag"] = (df["epsTTM"] > 0) & (df["trailingPE"] >= pe_thresh)
+    df["value_flag"] = (df["trailingPE"] < pe_thresh) & (df["epsTTM"] > 0)
+    df["tag"] = "neutral"
+    df.loc[df["growth_flag"], "tag"] = "growth"
+    df.loc[df["value_flag"], "tag"] = "value"
+    return df
+
+# -------------------------
+# 5) Indicators
+# -------------------------
+def SMA(series, window):
+    return series.rolling(window=window, min_periods=1).mean()
+
+def EMA(series, span):
+    return series.ewm(span=span, adjust=False).mean()
+
+def BollingerBands(series, window=20, n_std=2.0):
+    ma = SMA(series, window)
+    std = series.rolling(window=window, min_periods=1).std()
+    return pd.DataFrame({"bb_ma": ma, "bb_upper": ma + n_std * std, "bb_lower": ma - n_std * std})
+
+def RSI(series, window=14):
+    delta = series.diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.ewm(alpha=1/window, adjust=False).mean()
+    avg_loss = loss.ewm(alpha=1/window, adjust=False).mean()
+    rs = avg_gain / avg_loss.replace(0, np.nan)
+    rsi = 100 - (100 / (1 + rs))
+    return rsi.fillna(50)
+
+def MACD(series, fast=12, slow=26, signal=9):
+    ema_fast = series.ewm(span=fast, adjust=False).mean()
+    ema_slow = series.ewm(span=slow, adjust=False).mean()
+    macd = ema_fast - ema_slow
+    signal_line = macd.ewm(span=signal, adjust=False).mean()
+    hist = macd - signal_line
+    return pd.DataFrame({"macd": macd, "signal": signal_line, "hist": hist})
+
+# -------------------------
+# 6) Signals
+# -------------------------
+def sma_crossover_signal(adj_close, short=20, long=100):
+    s = SMA(adj_close, short)
+    l = SMA(adj_close, long)
+    pos = (s > l).astype(int)
+    return pos.shift(1).fillna(0)
+
+def bollinger_mean_reversion_signal(adj_close, window=20, n_std=2.0):
+    bb = BollingerBands(adj_close, window, n_std)
+    pos = pd.Series(0, index=adj_close.index)
+    holding = 0
+    for i in range(len(adj_close)):
+        price = adj_close.iloc[i]
+        if np.isnan(price):
+            pos.iloc[i] = holding
+            continue
+        if price < bb["bb_lower"].iloc[i] and holding == 0:
+            holding = 1
+        elif price > bb["bb_ma"].iloc[i] and holding == 1:
+            holding = 0
+        pos.iloc[i] = holding
+    return pos.shift(1).fillna(0)
+
+def rsi_signal(adj_close, low=30, high=70):
+    r = RSI(adj_close).fillna(50)
+    pos = (r < low).astype(int)
+    return pos.shift(1).fillna(0)
+
+def macd_signal(adj_close):
+    m = MACD(adj_close)
+    pos = (m["macd"] > m["signal"]).astype(int)
+    return pos.shift(1).fillna(0)
+
+def signal_table(price, signal):
+    """Return a table of only buy/sell events."""
+    df = pd.DataFrame({
+        "Price": price,
+        "Signal": signal
+    })
+
+    df["Action"] = df["Signal"].map({
+        1: "↑ BUY",
+        -1: "↓ SELL",
+        0: ""
+    })
+
+    # Only show rows where signal is not 0
+    return df[df["Signal"] != 0]
+
+def plot_price_with_signals(price, signal, title="Trading Signals"):
+    plt.figure(figsize=(14,5))
+
+    # Plot price
+    plt.plot(price.index, price.values, label="Price", linewidth=1.4, color="blue")
+
+    # BUY arrows
+    buy_idx = signal[signal == 1].index
+    buy_p = price.loc[buy_idx]
+    plt.scatter(buy_idx, buy_p,
+                marker="^", color="green", s=80,
+                label="↑ BUY")
+
+    # SELL arrows
+    sell_idx = signal[signal == -1].index
+    sell_p = price.loc[sell_idx]
+    plt.scatter(sell_idx, sell_p,
+                marker="v", color="red", s=80,
+                label="↓ SELL")
+
+    plt.title(title, fontsize=13)
+    plt.grid(alpha=0.3)
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+def clean_signal(raw_signal):
+    """Converts a raw position series (0 or 1) into buy/sell signals (-1, 0, 1)."""
+    # Shift the raw_signal to compare current position with previous position
+    prev_signal = raw_signal.shift(1).fillna(0)
+    # Calculate the difference to find changes in position
+    signal_diff = raw_signal - prev_signal
+
+    # Initialize an empty signal series
+    clean_sig = pd.Series(0, index=raw_signal.index)
+
+    # A difference of 1 means going from 0 to 1 (BUY)
+    clean_sig[signal_diff == 1] = 1
+
+    # A difference of -1 means going from 1 to 0 (SELL)
+    clean_sig[signal_diff == -1] = -1
+
+    return clean_sig
+
+# -------------------------
+# 7) Momentum cross-sectional
+# -------------------------
+def momentum_weights(adj_close_df, lookback_months=6, top_n=10, bottom_n=10):
+    monthly = adj_close_df.resample("M").last()
+    mom = monthly.pct_change(lookback_months)
+    dates = mom.index[lookback_months:]
+    weights = []
+    port_rets = []
+    for d in dates:
+        row = mom.loc[d].dropna()
+        if len(row)==0:
+            weights.append(pd.Series(0, index=adj_close_df.columns))
+            port_rets.append(0)
+            continue
+        ranked = row.sort_values(ascending=False)
+        longs = ranked.index[:top_n]
+        shorts = ranked.index[-bottom_n:]
+        w = pd.Series(0.0, index=adj_close_df.columns)
+        if len(longs)>0:
+            w.loc[longs] = 1.0 / len(longs)
+        if len(shorts)>0:
+            w.loc[shorts] = -1.0 / len(shorts)
+        weights.append(w)
+        idx = monthly.index.get_loc(d)
+        if idx+1 < len(monthly):
+            next_price = monthly.iloc[idx+1]
+            prev_price = monthly.loc[d]
+            ret = (next_price / prev_price - 1)
+            port_rets.append((w * ret).sum())
+        else:
+            port_rets.append(0)
+    weights_df = pd.DataFrame(weights, index=dates)
+    port_rets = pd.Series(port_rets, index=dates)
+    return weights_df, port_rets
+
+# -------------------------
+# 8) Backtest & Performance
+# -------------------------
+def backtest_equity_from_positions(adj_close, positions, trading_cost=0.001):
+    rets = adj_close.pct_change().fillna(0)
+    pos = positions.ffill().fillna(0)
+    pnl = pos * rets
+    turnover = pos.diff().abs().fillna(0)
+    cost = turnover * trading_cost
+    net = pnl - cost
+    equity = (1 + net).cumprod()
+    equity = equity / equity.iloc[0]
+    return equity
+
+def backtest_from_weights_monthly(monthly_prices, weights_df, trading_cost=0.001):
+    dates = weights_df.index
+    eq = []
+    curr_val = 1.0
+    prev_w = pd.Series(0.0, index=monthly_prices.columns)
+    for d in dates:
+        w = weights_df.loc[d].reindex(monthly_prices.columns).fillna(0)
+        turnover = (w - prev_w).abs().sum()
+        curr_val = curr_val * (1 - turnover * trading_cost)
+        idx = monthly_prices.index.get_loc(d)
+        if idx+1 < len(monthly_prices):
+            next_price = monthly_prices.iloc[idx+1]
+            prev_price = monthly_prices.loc[d]
+            ret = (next_price / prev_price - 1)
+            port_ret = (w * ret).sum()
+            curr_val = curr_val * (1 + port_ret)
+        eq.append(curr_val)
+        prev_w = w.copy()
+    return pd.Series(eq, index=dates)
+
+def performance_summary(equity):
+    equity = equity.dropna()
+    if len(equity) < 2:
+        return {"Total Return (%)":0.0, "CAGR (%)":0.0, "Max Drawdown (%)":0.0, "Volatility (%)":0.0, "Sharpe Ratio":0.0}
+    days = (equity.index[-1] - equity.index[0]).days
+    years = max(days / 365.25, 1/365.25)
+    total_return = equity.iloc[-1] - 1.0
+    cagr = (equity.iloc[-1]) ** (1.0/years) - 1.0
+    dd = equity / equity.cummax() - 1.0
+    max_dd = dd.min()
+    rets = equity.pct_change().dropna()
+    median_delta = np.median(np.diff(equity.index.astype("int64") // 10**9)) / (60*60*24)
+    periods_per_year = 12 if median_delta > 20 else 252
+    vol = rets.std() * np.sqrt(periods_per_year)
+    sharpe = 0.0
+    if rets.std() != 0:
+        sharpe = rets.mean() / rets.std() * np.sqrt(periods_per_year)
+    return {"Total Return (%)": total_return*100, "CAGR (%)": cagr*100, "Max Drawdown (%)": max_dd*100, "Volatility (%)": vol*100, "Sharpe Ratio": sharpe}
+
+# -------------------------
+# 9) Plot helpers
+# -------------------------
+
+def save_equity_plot(equity, outpath, title=None):
+    os.makedirs(os.path.dirname(outpath), exist_ok=True)
+    plt.figure(figsize=(10,4))
+    plt.plot(equity.index, equity.values, label="Equity")
+    if title:
+        plt.title(title)
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(outpath)
+    plt.close()
+
+# -------------------------
+# 10) Run pipeline
+# -------------------------
+print("Downloading price data...")
+raw = download_ohlcv(TICKERS, START_DATE)
+price_df = build_price_matrix(raw)
+print("Price matrix:", price_df.shape)
+
+print("Fetching fundamentals (may be slow)...")
+fund = fetch_basic_fundamentals(TICKERS)
+fund_class = classify_growth_value(fund)
+fund_class.to_csv(os.path.join(OUTPUT_ROOT, "fundamentals_classification.csv"))
+print("Fundamentals saved.")
+
+# Single-asset strategies
+summary_rows = []
+for ticker in TICKERS:
+    if ticker not in price_df.columns:
+        continue
+    series = price_df[ticker].dropna()
+    if len(series) < 60:
+        continue
+    print("Running single-asset strategies for", ticker)
+    strategies = {
+        "SMA_crossover": sma_crossover_signal(series),
+        "Bollinger_MR": bollinger_mean_reversion_signal(series),
+        "RSI": rsi_signal(series),
+        "MACD": macd_signal(series)
+    }
+    for name, signal in strategies.items():
+        eq = backtest_equity_from_positions(series, signal, trading_cost=TRADING_COST)
+        perf = performance_summary(eq)
+        perf_row = {"ticker": ticker, "strategy": name}
+        perf_row.update(perf)
+        summary_rows.append(perf_row)
+        dirpath = os.path.join(OUTPUT_ROOT, name)
+        os.makedirs(dirpath, exist_ok=True)
+        # save equity csv and plot
+        eq.to_csv(os.path.join(dirpath, f"{ticker}_equity.csv"))
+        save_equity_plot(eq, os.path.join(dirpath, f"{ticker}_equity.png"), f"{ticker} - {name}")
+
+# Momentum strategy
+print("Running Momentum cross-sectional...")
+weights, port_rets = momentum_weights(price_df, lookback_months=MOM_LOOKBACK_MONTHS, top_n=MOM_TOP_N, bottom_n=MOM_BOTTOM_N)
+monthly_prices = price_df.resample("M").last()
+eq_mom = backtest_from_weights_monthly(monthly_prices, weights, trading_cost=TRADING_COST)
+perf_mom = performance_summary(eq_mom)
+perf_row = {"ticker":"MOM_PORT", "strategy":"Momentum_cross_sectional"}
+perf_row.update(perf_mom)
+summary_rows.append(perf_row)
+mom_dir = os.path.join(OUTPUT_ROOT, "Momentum_cross_sectional")
+os.makedirs(mom_dir, exist_ok=True)
+eq_mom.to_csv(os.path.join(mom_dir, "momentum_equity.csv"))
+save_equity_plot(eq_mom, os.path.join(mom_dir, "momentum_equity.png"), "Momentum Equity")
+
+# Summary
+summary_df = pd.DataFrame(summary_rows)
+summary_df = summary_df.sort_values(by=["strategy", "CAGR (%)"], ascending=[True, False])
+summary_df.to_csv(os.path.join(OUTPUT_ROOT, "strategy_summary.csv"), index=False)
+print("Pipeline finished. Results in", OUTPUT_ROOT)
+print(summary_df.head(30))
+
+# Display a couple of plots inline (Colab)
+import IPython.display as disp
+from PIL import Image
+
+def show_image(path):
+    if os.path.exists(path):
+        display(Image.open(path).resize((900,300)))
+    else:
+        print("No image:", path)
+
+# show momentum image
+mom_img = os.path.join(mom_dir, "momentum_equity.png")
+if os.path.exists(mom_img):
+    display(Image.open(mom_img))
+else:
+    print("Momentum image not ready.")
+
+# show first few equities
+for s in summary_df['strategy'].unique()[:3]:
+    dirpath = os.path.join(OUTPUT_ROOT, s)
+    if os.path.exists(dirpath):
+        files = [f for f in os.listdir(dirpath) if f.endswith(".png")]
+        if files:
+            display(Image.open(os.path.join(dirpath, files[0])).resize((900,300)))
+            break
+
+# Ví dụ chạy cho GOOGL
+p = price_df["GOOGL"].dropna()
+
+# Raw signal (position: 0 or 1)
+sig_raw = sma_crossover_signal(p)
+
+# Clean signal (events: -1 / 0 / 1)
+signal = clean_signal(sig_raw)
+
+# Biểu đồ BUY/SELL
+plot_price_with_signals(p, signal, "GOOGL — SMA Crossover (with signals)")
+
+# Bảng tín hiệu
+signal_table(p, signal).head(20)
+
+print("Done.")
+

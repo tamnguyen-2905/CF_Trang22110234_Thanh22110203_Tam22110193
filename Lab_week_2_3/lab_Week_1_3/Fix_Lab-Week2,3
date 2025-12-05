@@ -1,6 +1,5 @@
 # =========================
-# Lab W2-3 — ALL-IN-ONE Colab Cell
-# Paste this entire cell into Google Colab and run.
+# Lab W2-3
 # =========================
 
 # 0) Install dependencies
@@ -435,4 +434,3 @@ plot_price_with_signals(p, signal, "GOOGL — SMA Crossover (with signals)")
 signal_table(p, signal).head(20)
 
 print("Done.")
-
